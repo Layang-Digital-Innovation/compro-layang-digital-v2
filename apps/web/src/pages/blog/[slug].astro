@@ -1,0 +1,33 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/Navbar';
+import BlogDetail from '@/components/BlogDetail';
+import Footer from '@/components/Footer';
+import { getAllArticleSlugs, getBlogBySlug } from '@/lib/strapi';
+
+export async function getStaticPaths() {
+	const slugs = await getAllArticleSlugs();
+	return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const blog = await getBlogBySlug(slug!);
+const currentPath = Astro.url.pathname;
+const title = blog ? `${blog.title} - Layang Digital Blog` : 'Blog Not Found';
+---
+
+<Layout title={title}>
+	<Navbar client:load currentPath={currentPath} />
+	{blog ? (
+		<BlogDetail client:load blog={blog} />
+	) : (
+		<div class="min-h-screen flex items-center justify-center">
+			<div class="text-center">
+				<h1 class="text-4xl font-bold text-gray-800 mb-4">404</h1>
+				<p class="text-gray-500 mb-8">Article not found.</p>
+				<a href="/blog" class="text-[#068D9D] font-semibold hover:underline">← Back to Blog</a>
+			</div>
+		</div>
+	)}
+	<Footer client:visible />
+</Layout>

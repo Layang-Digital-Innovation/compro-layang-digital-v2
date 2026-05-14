@@ -1,0 +1,19 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/Navbar';
+import SolutionComponent from '@/components/Solution';
+import CallToAction from '@/components/CallToAction';
+import Footer from '@/components/Footer';
+
+// Get current path for active states
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Solutions - Layang Digital Innovation">
+	<Navbar client:load currentPath={currentPath} />
+	<div class="pt-24 md:pt-32">
+		<SolutionComponent client:visible />
+	</div>
+	<CallToAction client:visible />
+	<Footer client:visible />
+</Layout>

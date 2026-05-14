@@ -1,0 +1,31 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import Client from '@/components/Client';
+import Services from '@/components/Services';
+import Projects from '@/components/Projects';
+import CTAButton from '@/components/CTAButton';
+import { CollaborationModel } from '@/components/CollaborationModel';
+import Testimonial from '@/components/Testimonial';
+import CallToAction from '@/components/CallToAction';
+import Article from '@/components/Article';
+import Footer from '@/components/Footer';
+
+// Get current path for active states
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Layang Digital Innovation">
+	<Navbar client:load currentPath={currentPath} />
+	<CTAButton client:load />
+	<Hero client:visible />
+	<Client client:visible />
+	<Services client:visible />
+	<Projects client:visible />
+	<CollaborationModel client:visible />
+	<Testimonial client:visible />
+	<CallToAction client:visible />
+	<Article client:visible />
+	<Footer client:visible />
+</Layout>

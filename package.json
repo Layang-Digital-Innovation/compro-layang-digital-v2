@@ -1,17 +1,14 @@
 {
   "name": "super-saturn",
-  "type": "module",
-  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "dev:web": "pnpm --filter @super-saturn/web dev",
+    "dev:cms": "pnpm --filter @super-saturn/cms develop",
+    "build": "pnpm -r run build",
+    "build:web": "pnpm --filter @super-saturn/web build"
+  },
   "engines": {
     "node": ">=22.12.0"
-  },
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^6.1.5"
   }
 }

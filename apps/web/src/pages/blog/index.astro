@@ -1,0 +1,19 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/Navbar';
+import BlogPage from '@/components/BlogPage';
+import Footer from '@/components/Footer';
+import { getBlogArticles } from '@/lib/strapi';
+
+// Fetch all blog posts from Strapi at build time
+const posts = await getBlogArticles();
+
+// Get current path for active states
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Blog - Layang Digital Innovation">
+	<Navbar client:load currentPath={currentPath} />
+	<BlogPage client:load posts={posts} />
+	<Footer client:visible />
+</Layout>
