@@ -7,7 +7,7 @@ RUN corepack enable pnpm
 WORKDIR /app
 
 # Copy workspace config and lockfile
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 # Copy the cms app and shared packages
 COPY apps/cms ./apps/cms
 COPY packages ./packages
