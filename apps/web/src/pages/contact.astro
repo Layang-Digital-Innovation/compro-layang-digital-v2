@@ -1,0 +1,17 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/Navbar';
+import ContactForm from '@/components/ContactForm';
+import Footer from '@/components/Footer';
+
+// Get current path for active states
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Contact Us - Layang Digital Innovation">
+	<Navbar client:load currentPath={currentPath} />
+	<div class="pt-24 md:pt-32 bg-white min-h-screen">
+		<ContactForm client:visible />
+	</div>
+	<Footer client:visible />
+</Layout>

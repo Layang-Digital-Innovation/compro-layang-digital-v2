@@ -1,4 +1,4 @@
-import type { BlogArticle, BlogListItem } from "@super-saturn/shared";
+import type { BlogArticle, BlogListItem, Portfolio } from "@super-saturn/shared";
 
 // ─── Config ───────────────────────────────────────────────────
 
@@ -152,4 +152,74 @@ export async function getAllArticleSlugs(): Promise<string[]> {
   );
 
   return response.data.map((a) => a.slug);
+}
+
+// ─── Portfolio API ────────────────────────────────────────────
+
+/**
+ * Fetch featured portfolios.
+ */
+export async function getFeaturedPortfolios(): Promise<Portfolio[]> {
+  const response = await fetchAPI<StrapiListResponse<any>>(
+    "/portfolios",
+    {
+      "populate[image]": "true",
+      "sort": "createdAt:desc",
+      "pagination[pageSize]": "5",
+      "filters[publishedAt][$notNull]": "true",
+    }
+  );
+
+  return response.data.map((item) => ({
+    id: item.id,
+    documentId: item.documentId,
+    title: item.title,
+    description: item.description,
+    link: item.link || undefined,
+    image: item.image || null,
+    publishedAt: item.publishedAt,
+  }));
+}
+
+// ─── Contact API ──────────────────────────────────────────────
+
+export type ContactFormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  service: string;
+  brief: string;
+};
+
+/**
+ * Submit contact form data to Strapi.
+ */
+export async function submitContactForm(data: ContactFormData): Promise<boolean> {
+  const url = new URL("/api/contacts", STRAPI_URL);
+  
+  const headers: HeadersInit = {
+    "Content-Type": "application/json",
+  };
+
+  if (STRAPI_TOKEN) {
+    headers["Authorization"] = `Bearer ${STRAPI_TOKEN}`;
+  }
+
+  try {
+    const res = await fetch(url.toString(), {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ data }),
+    });
+
+    if (!res.ok) {
+      console.error(`Strapi API error: ${res.status} ${res.statusText}`);
+      return false;
+    }
+    
+    return true;
+  } catch (error) {
+    console.error("Failed to submit contact form:", error);
+    return false;
+  }
 }

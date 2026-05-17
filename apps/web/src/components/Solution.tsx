@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Button from "./Button";
+import type { Portfolio } from "@super-saturn/shared";
+import { getStrapiMediaURL } from "@/lib/strapi";
 
 const solutions = [
   {
@@ -20,7 +22,7 @@ const solutions = [
   },
 ];
 
-export default function Solution() {
+export default function Solution({ portfolios = [] }: { portfolios?: Portfolio[] }) {
   return (
     <section id="solution" className="container mx-auto px-6 md:px-12 lg:px-20 py-16 bg-gray-50 rounded-3xl mt-12 mb-12">
       <div className="text-center mb-16">
@@ -50,27 +52,64 @@ export default function Solution() {
       </div>
 
       {/* Showcase Portfolio */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="bg-gradient-to-r from-[#068D9D] to-blue-600 rounded-2xl overflow-hidden shadow-lg flex flex-col md:flex-row items-center"
-      >
-        <div className="p-10 md:w-1/2 text-white">
-          <span className="uppercase tracking-wider text-sm font-semibold text-blue-200 mb-2 block">Featured Portfolio</span>
-          <h2 className="text-3xl font-bold mb-4">Layang Digital</h2>
-          <p className="text-blue-50 mb-6 leading-relaxed">
-            Discover how we transformed a traditional UMKM into a tech-forward business using our integrated AI solutions. Layang Digital serves as our prime example of operational excellence driven by machine learning.
-          </p>
-          <Button className="text-[#068D9D] hover:bg-gray-100 border-none">
-            View Case Study
-          </Button>
+      {portfolios.length > 0 ? (
+        <div className="space-y-8">
+          {portfolios.map((portfolio, index) => (
+            <motion.div
+              key={portfolio.id || index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-[#068D9D] to-blue-600 rounded-2xl overflow-hidden shadow-lg flex flex-col md:flex-row items-center"
+            >
+              <div className="p-10 md:w-1/2 text-white">
+                <span className="uppercase tracking-wider text-sm font-semibold text-blue-200 mb-2 block">Featured Portfolio</span>
+                <h2 className="text-3xl font-bold mb-4">{portfolio.title}</h2>
+                <p className="text-blue-50 mb-6 leading-relaxed">
+                  {portfolio.description}
+                </p>
+                {portfolio.link ? (
+                  <a href={portfolio.link} target="_blank" rel="noopener noreferrer">
+                    <Button className="text-[#068D9D] hover:bg-gray-100 border-none">
+                      View Case Study
+                    </Button>
+                  </a>
+                ) : (
+                  <Button className="text-[#068D9D] hover:bg-gray-100 border-none">
+                    View Case Study
+                  </Button>
+                )}
+              </div>
+              <div className="md:w-1/2 w-full min-h-[300px] flex relative object-cover bg-gray-900">
+                  <img src={portfolio.image?.url ? getStrapiMediaURL(portfolio.image.url) : "/assets/layang_dashboard.png"} alt={portfolio.title} className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity" />
+              </div>
+            </motion.div>
+          ))}
         </div>
-        <div className="md:w-1/2 w-full min-h-[300px] flex relative object-cover bg-gray-900">
-            <img src="/assets/layang_dashboard.png" alt="Layang Digital AI Dashboard Preview" className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity" />
-        </div>
-      </motion.div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-r from-[#068D9D] to-blue-600 rounded-2xl overflow-hidden shadow-lg flex flex-col md:flex-row items-center"
+        >
+          <div className="p-10 md:w-1/2 text-white">
+            <span className="uppercase tracking-wider text-sm font-semibold text-blue-200 mb-2 block">Featured Portfolio</span>
+            <h2 className="text-3xl font-bold mb-4">Layang Digital</h2>
+            <p className="text-blue-50 mb-6 leading-relaxed">
+              Discover how we transformed a traditional UMKM into a tech-forward business using our integrated AI solutions. Layang Digital serves as our prime example of operational excellence driven by machine learning.
+            </p>
+            <Button className="text-[#068D9D] hover:bg-gray-100 border-none">
+              View Case Study
+            </Button>
+          </div>
+          <div className="md:w-1/2 w-full min-h-[300px] flex relative object-cover bg-gray-900">
+              <img src="/assets/layang_dashboard.png" alt="Layang Digital AI Dashboard Preview" className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity" />
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 }

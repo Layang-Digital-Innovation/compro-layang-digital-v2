@@ -44,12 +44,12 @@ export default function Footer() {
           <div className="grid grid-cols-3 py-10 gap-9 w-full max-w-md">
             <div className="w-fit">
               <h3 className="font-semibold">Site map</h3>
-              <ul className="font-light">
-                <li>Home</li>
-                <li>Service</li>
-                <li>About</li>
-                <li>Blog</li>
-                <li>Carreer</li>
+              <ul className="font-light space-y-2 mt-4">
+                <li><a href="/" className="hover:underline">Home</a></li>
+                <li><a href="/solution" className="hover:underline">Solution</a></li>
+                <li><a href="/about" className="hover:underline">About</a></li>
+                <li><a href="/blog" className="hover:underline">Blog</a></li>
+                <li><a href="/contact" className="hover:underline">Contact Us</a></li>
               </ul>
             </div>
             <div className="w-fit">

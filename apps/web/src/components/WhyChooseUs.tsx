@@ -20,8 +20,8 @@ export default function WhyChooseUs() {
           </div>
           {/* Vertical Large Card */}
           <div className="bg-gray-200 rounded-3xl p-8 col-span-1 md:row-span-2 border border-gray-300 shadow-sm flex flex-col justify-end">
-             <div className="flex-1 w-full flex items-center justify-center pb-8">
-               <span className="text-gray-400">Illustration</span>
+             <div className="flex-1 w-full flex items-center justify-center pb-8 overflow-hidden rounded-xl">
+               <img src="/assets/reliability_illustration_1778747744432.png" alt="Reliability Illustration" className="w-full h-full object-cover" />
              </div>
              <h3 className="font-bold text-xl text-[#0A2540] mb-2">Reliability</h3>
              <p className="text-gray-600 text-sm">Consistent delivery and dedicated support when you need it most.</p>

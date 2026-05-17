@@ -4,15 +4,17 @@ import Navbar from '@/components/Navbar';
 import SolutionComponent from '@/components/Solution';
 import CallToAction from '@/components/CallToAction';
 import Footer from '@/components/Footer';
+import { getFeaturedPortfolios } from '@/lib/strapi';
 
 // Get current path for active states
 const currentPath = Astro.url.pathname;
+const portfolios = await getFeaturedPortfolios().catch(() => []);
 ---
 
 <Layout title="Solutions - Layang Digital Innovation">
 	<Navbar client:load currentPath={currentPath} />
 	<div class="pt-24 md:pt-32">
-		<SolutionComponent client:visible />
+		<SolutionComponent client:visible portfolios={portfolios} />
 	</div>
 	<CallToAction client:visible />
 	<Footer client:visible />

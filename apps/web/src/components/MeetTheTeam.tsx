@@ -1,8 +1,8 @@
 export default function MeetTheTeam() {
   const team = [
-    { name: "Team Member 1", role: "Role Placeholder" },
-    { name: "Team Member 2", role: "Role Placeholder" },
-    { name: "Team Member 3", role: "Role Placeholder" },
+    { name: "John Doe", role: "Executive Officer", image: "/assets/team_member_1_1778747414863.png" },
+    { name: "Jane Smith", role: "Chief Technology Officer", image: "/assets/team_member_2_1778747623061.png" },
+    { name: "Alex Chen", role: "Design Director", image: "/assets/team_member_3_1778747649401.png" },
   ];
 
   return (
@@ -17,7 +17,9 @@ export default function MeetTheTeam() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {team.map((member, i) => (
             <div key={i} className="flex flex-col items-center">
-              <div className="w-full aspect-[4/5] bg-gray-200 rounded-2xl mb-6 shadow-sm border border-gray-100"></div>
+              <div className="w-full aspect-[4/5] bg-gray-200 rounded-2xl mb-6 shadow-sm border border-gray-100 overflow-hidden">
+                <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+              </div>
               <h3 className="font-bold text-lg text-[#0A2540]">{member.name}</h3>
               <p className="text-gray-500 font-medium">{member.role}</p>
             </div>

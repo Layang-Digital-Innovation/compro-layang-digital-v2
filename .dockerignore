@@ -1,0 +1,14 @@
+node_modules
+apps/web/node_modules
+apps/cms/node_modules
+apps/web/dist
+apps/cms/build
+apps/cms/.cache
+npm-debug.log
+.DS_Store
+.env
+.env.*
+!.env.example
+.git
+.vscode
+.gemini

@@ -38,3 +38,15 @@ export type BlogArticle = {
 };
 
 export type BlogListItem = Omit<BlogArticle, "sections">;
+
+// ─── Portfolio Types ──────────────────────────────────────────
+
+export type Portfolio = {
+  id: number;
+  documentId: string;
+  title: string;
+  description: string;
+  link?: string;
+  image: StrapiMedia | null;
+  publishedAt: string | null;
+};

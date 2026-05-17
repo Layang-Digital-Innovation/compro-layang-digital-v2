@@ -11,7 +11,6 @@ function Navbar({ currentPath }: { currentPath: string }) {
 
   const menuLink = [
     { name: "Home", link: "/" },
-    { name: "Service", link: "#services" },
     { name: "About", link: "/about" },
     { name: "Solution", link: "/solution" },
     { name: "Blog", link: "/blog" },
@@ -47,7 +46,7 @@ function Navbar({ currentPath }: { currentPath: string }) {
 
         {/* Contact Button (Desktop) */}
         <div className="hidden md:flex">
-          <a href="https://api.whatsapp.com/send?phone=6285182322580">
+          <a href="/contact">
             <Button>Contact Us</Button>
           </a>
         </div>
@@ -97,7 +96,7 @@ function Navbar({ currentPath }: { currentPath: string }) {
           );
         })}
         <li>
-          <a href="https://api.whatsapp.com/send?phone=6285182322580">
+          <a href="/contact" onClick={() => setIsOpen(false)}>
             <Button className="w-full">Contact Us</Button>
           </a>
         </li>
