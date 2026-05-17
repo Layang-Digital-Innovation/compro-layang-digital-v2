@@ -12,6 +12,9 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/cms ./apps/cms
 COPY packages ./packages
 
+# Allow pnpm to run lifecycle scripts (e.g. sharp, pg)
+RUN pnpm config set ignore-scripts false
+
 # Install dependencies
 RUN pnpm install --filter @super-saturn/cms...
 

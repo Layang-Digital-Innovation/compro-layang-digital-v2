@@ -12,6 +12,9 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/web ./apps/web
 COPY packages ./packages
 
+# Allow pnpm to run lifecycle scripts for esbuild/sharp
+RUN pnpm config set ignore-scripts false
+
 # Install dependencies (only what's needed for web workspace)
 RUN pnpm install --filter @super-saturn/web...
 
