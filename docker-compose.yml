@@ -30,7 +30,7 @@ services:
     container_name: compro-layangdigital-web
     restart: always
     ports:
-      - "3000:80"
+      - "3005:80"
     networks:
       - nginx-network
 
