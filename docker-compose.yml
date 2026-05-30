@@ -25,7 +25,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: apps/web/Dockerfilex
+      dockerfile: apps/web/Dockerfile
     container_name: compro-layangdigital-web
     restart: always
     ports:
