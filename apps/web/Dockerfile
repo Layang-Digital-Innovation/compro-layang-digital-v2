@@ -12,21 +12,30 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 COPY apps/web ./apps/web
 COPY packages ./packages
 
-# Allow pnpm to run lifecycle scripts for esbuild/sharp
-RUN pnpm config set ignore-scripts false
-
 # Install dependencies (only what's needed for web workspace)
-RUN pnpm install --no-frozen-lockfile --filter @compro-layangdigital/web...
+RUN pnpm config set ignore-scripts false
+RUN pnpm install --no-frozen-lockfile --filter @compro-layangdigital/web... 2>&1 || \
+    (echo "=== PNPM INSTALL FAILED ===" && cat /root/.npm/_logs/*.log 2>/dev/null; exit 1)
 
 # Build the Astro site
 RUN pnpm --filter @compro-layangdigital/web build
 
-# Stage 2: Serve the static files
-FROM nginx:alpine AS runner
+# Stage 2: Production runner
+FROM node:22-slim AS runner
 
-# Copy the built output from Astro to Nginx's html folder
-COPY --from=builder /app/apps/web/dist /usr/share/nginx/html
+RUN corepack enable pnpm
 
+WORKDIR /app
+ENV NODE_ENV=production
+
+# Copy necessary files from the builder
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/apps/web ./apps/web
+COPY --from=builder /app/packages ./packages
+
+ENV HOST=0.0.0.0
+ENV PORT=80
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", "./apps/web/dist/server/entry.mjs"]

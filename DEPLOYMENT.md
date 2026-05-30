@@ -1,6 +1,6 @@
 # Deployment Guide with Docker & Portainer
 
-This document outlines the steps required to deploy the **Super Saturn** (Astro + Strapi) monorepo using Docker and Portainer.
+This document outlines the steps required to deploy the **Compro Layang Digital** (Astro + Strapi) monorepo using Docker and Portainer.
 
 ---
 
