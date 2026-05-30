@@ -20,7 +20,8 @@ services:
       - TRANSFER_TOKEN_SALT=${TRANSFER_TOKEN_SALT}
       - JWT_SECRET=${JWT_SECRET}
       - NODE_ENV=production
-
+    networks:
+      - nginx-network
 
   web:
     build:
@@ -30,5 +31,9 @@ services:
     restart: always
     ports:
       - "3000:80"
+    networks:
+      - nginx-network
 
-
+networks:
+  nginx-network:
+    external: true
