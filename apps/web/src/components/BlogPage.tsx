@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getStrapiMediaURL } from "@/lib/strapi";
-import type { BlogListItem } from "@super-saturn/shared";
+import type { BlogListItem } from "@compro-layangdigital/shared";
 
 // ─── Sub-Components ────────────────────────────────────────────
 

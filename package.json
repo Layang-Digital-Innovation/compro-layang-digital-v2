@@ -1,12 +1,12 @@
 {
-  "name": "super-saturn",
+  "name": "compro-layangdigital",
   "private": true,
   "scripts": {
     "dev": "pnpm -r --parallel run dev",
-    "dev:web": "pnpm --filter @super-saturn/web dev",
-    "dev:cms": "pnpm --filter @super-saturn/cms develop",
+    "dev:web": "pnpm --filter @compro-layangdigital/web dev",
+    "dev:cms": "pnpm --filter @compro-layangdigital/cms develop",
     "build": "pnpm -r run build",
-    "build:web": "pnpm --filter @super-saturn/web build"
+    "build:web": "pnpm --filter @compro-layangdigital/web build"
   },
   "engines": {
     "node": ">=22.12.0"

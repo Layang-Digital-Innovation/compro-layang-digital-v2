@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { getStrapiMediaURL } from "@/lib/strapi";
-import type { BlogArticle, BlogSection } from "@super-saturn/shared";
+import type { BlogArticle, BlogSection } from "@compro-layangdigital/shared";
 
 // ─── Types ─────────────────────────────────────────────────────
 

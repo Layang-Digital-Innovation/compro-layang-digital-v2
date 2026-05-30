@@ -29,7 +29,7 @@ Ensure your latest changes, including the `docker-compose.yml`, `.dockerignore`,
 2. Select your environment (usually `local` or the specific node).
 3. Click on **Stacks** in the left sidebar.
 4. Click the **+ Add stack** button.
-5. Give your stack a name (e.g., `super-saturn`).
+5. Give your stack a name (e.g., `compro-layangdigital`).
 
 ### Step 3: Choose Build Method
 

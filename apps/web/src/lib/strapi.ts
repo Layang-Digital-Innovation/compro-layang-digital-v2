@@ -1,4 +1,4 @@
-import type { BlogArticle, BlogListItem, Portfolio } from "@super-saturn/shared";
+import type { BlogArticle, BlogListItem, Portfolio } from "@compro-layangdigital/shared";
 
 // ─── Config ───────────────────────────────────────────────────
 

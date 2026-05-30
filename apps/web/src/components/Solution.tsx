@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Button from "./Button";
-import type { Portfolio } from "@super-saturn/shared";
+import type { Portfolio } from "@compro-layangdigital/shared";
 import { getStrapiMediaURL } from "@/lib/strapi";
 
 const solutions = [

@@ -16,10 +16,10 @@ COPY packages ./packages
 RUN pnpm config set ignore-scripts false
 
 # Install dependencies (only what's needed for web workspace)
-RUN pnpm install --filter @super-saturn/web...
+RUN pnpm install --filter @compro-layangdigital/web...
 
 # Build the Astro site
-RUN pnpm --filter @super-saturn/web build
+RUN pnpm --filter @compro-layangdigital/web build
 
 # Stage 2: Serve the static files
 FROM nginx:alpine AS runner
