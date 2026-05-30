@@ -16,7 +16,7 @@ COPY packages ./packages
 RUN pnpm config set ignore-scripts false
 
 # Install dependencies
-RUN pnpm install --filter @compro-layangdigital/cms...
+RUN pnpm install --no-frozen-lockfile --filter @compro-layangdigital/cms...
 
 # Set ENV for build optimizations
 ENV NODE_ENV=production

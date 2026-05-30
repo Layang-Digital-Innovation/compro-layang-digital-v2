@@ -16,7 +16,7 @@ COPY packages ./packages
 RUN pnpm config set ignore-scripts false
 
 # Install dependencies (only what's needed for web workspace)
-RUN pnpm install --filter @compro-layangdigital/web...
+RUN pnpm install --no-frozen-lockfile --filter @compro-layangdigital/web...
 
 # Build the Astro site
 RUN pnpm --filter @compro-layangdigital/web build
